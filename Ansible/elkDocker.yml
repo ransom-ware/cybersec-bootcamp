@@ -1,0 +1,16 @@
+---
+- name: Docker Installer
+  hosts: elk
+  become: true
+  tasks:
+  - name: Install Docker
+    apt:
+
+      update_cache: yes
+      name: docker.io
+      state: present
+
+
+
+
+
