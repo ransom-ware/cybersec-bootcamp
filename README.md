@@ -2,11 +2,70 @@
 
 The files in this repository were used to configure the network depicted below.
 
-../Diagrams/elk-stack.drawio
+![alt text](https://github.com/ransom-ware/cybersec-bootcamp/blob/main/Diagrams/ELK.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to recreate the entire deployment pictured above. Alternatively, select portions of the below file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to recreate the entire deployment pictured above. Alternatively, select portions of the below file may be configured to install only certain pieces of it, such as Filebeat.
 
-../Ansible/fmbeat-playbook.yml
+##### fmbeat-playbook.yml
+```
+---
+- name: Install and setup Filebeat
+  hosts: webservers
+  become: yes
+  tasks:
+
+  - name: Download Filebeat.deb
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-a>
+
+  - name: Install Filebeat.deb
+    command: dpkg -i filebeat-7.6.1-amd64.deb
+
+  - name: drop in filebeat.yml
+    copy:
+      src: /etc/ansible/files/filebeat-config.yml
+      dest: /etc/filebeat/filebeat.yml
+
+  - name: Enable and configure system module
+    command: filebeat modules enable system
+
+  - name: Setup filebeat
+    command: filebeat setup
+
+  - name: Start filebeat service
+    command: service filebeat start
+
+  - name: Start filebeat on boot
+    systemd:
+      name: filebeat.service
+      enabled: yes
+
+- name: Install and setup MetricBeat
+  hosts: webservers
+  become: yes
+  tasks:
+
+  - name: Download Metricbeat
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.4>
+
+  - name: Install Metricbeat
+    command: dpkg -i metricbeat-7.4.0-amd64.deb
+
+  - name: drop in metricbeat.yml
+    copy:
+      src: /etc/ansible/files/metricbeat-config.yml
+      dest: /etc/metricbeat/metricbeat.yml
+
+  - name: Enable and configure system module
+    command: metricbeat modules enable docker
+
+  - name: Setup Metricbeat
+    command: metricbeat setup -e
+
+  - name: Enable Metricbeat on boot
+    systemd:
+      name: metricbeat.service
+      enabled: yes
+```
 
 This document contains the following details:
 - Description of the Topology
