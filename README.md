@@ -1,6 +1,6 @@
 ## Automated ELK Stack Deployment
 
-The files in this repository were used to configure the network depicted below.
+The files in the `Ansible` folder of this repository were used to configure the network depicted below.
 
 ![alt text](https://github.com/ransom-ware/cybersec-bootcamp/blob/main/Diagrams/ELK.png)
 
@@ -119,7 +119,7 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 
 The three playbooks implement the following tasks:
 
-##### Playbook 1: install-docker.yml
+#### Playbook 1: install-docker.yml
 
 install-docker.yml is used to set up DMWA servers running in a Docker container on each of the web servies show in the diagram above. It implements the following tasks:
 
@@ -129,7 +129,7 @@ install-docker.yml is used to set up DMWA servers running in a Docker container 
 - Downloads and launches the DVWA Docker container
 - Enables the Docker service
 
-##### Playbook 2: install-elk.yml
+#### Playbook 2: install-elk.yml
 
 install-elk.yml is used to set up and launch the ELK repository server in a Docker Container on the ELK server. It implements the following tasks:
 
@@ -140,7 +140,7 @@ install-elk.yml is used to set up and launch the ELK repository server in a Dock
 - Increase memory to support the ELK stack
 - Download and launch the Docker ELK container
 
-##### Playbook 3: filebeat-playbook.yml
+#### Playbook 3: filebeat-playbook.yml
 
 fm-playbook.yml is used to deploy Filebeat on each of the web servers so they can be monitored centrally using ELK services running on Elk-1. It implements the following tasks:
 
@@ -155,7 +155,7 @@ This ELK server is configured to monitor the following machines:
 - Web-1: 10.0.0.5
 - Web-2: 10.0.0.6
 
-I have installed the following Beats on these machines:
+The following Beats have been installed on these machines:
 - Filebeat
 - Metricbeat
 
