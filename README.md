@@ -2,7 +2,7 @@
 
 The files in the `Ansible` folder of this repository were used to configure the network depicted below.
 
-![alt text](https://github.com/ransom-ware/cybersec-bootcamp/blob/main/Diagrams/ELK.png)
+![alt text](https://github.com/ransom-ware/cybersec-bootcamp/blob/main/Diagrams/ELKnet.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to recreate the entire deployment pictured above. Alternatively, select portions of the below file may be configured to install only certain pieces of it, such as Filebeat.
 
